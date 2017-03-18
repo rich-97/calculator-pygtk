@@ -8,39 +8,21 @@ class Calculator (Window):
   def __init__ (self, title):
     Window.__init__(self, title)
     self.create_grid()
-  
     self.size_screen = (3, 1)
-
+    self.buttons = '% . = 0 1 - 2 3 + 4 5 x 6 7 ÷ 8 9 DEL ( ) AC'.split()
     self.input_box = self.Gtk.Label()
     self.input_box.set_name('input')
     self.input_box.set_xalign(0)
-  
     self.output_box = self.Gtk.Label('0.')
     self.output_box.set_name('output')
     self.output_box.set_xalign(1)
-
-    self.create_button('%', 0, 8).connect('clicked', self.on_clicked_btn)
-    self.create_button('.', 1, 8).connect('clicked', self.on_clicked_btn)
-    self.create_button('=', 2, 8).connect('clicked', self.on_clicked_btn)
-    self.create_button('0', 0, 7).connect('clicked', self.on_clicked_btn)
-    self.create_button('1', 1, 7).connect('clicked', self.on_clicked_btn)
-    self.create_button('-', 2, 7).connect('clicked', self.on_clicked_btn)
-    self.create_button('2', 0, 6).connect('clicked', self.on_clicked_btn)
-    self.create_button('3', 1, 6).connect('clicked', self.on_clicked_btn)
-    self.create_button('+', 2, 6).connect('clicked', self.on_clicked_btn)
-    self.create_button('4', 0, 5).connect('clicked', self.on_clicked_btn)
-    self.create_button('5', 1, 5).connect('clicked', self.on_clicked_btn)
-    self.create_button('x', 2, 5).connect('clicked', self.on_clicked_btn)
-    self.create_button('6', 0, 4).connect('clicked', self.on_clicked_btn)
-    self.create_button('7', 1, 4).connect('clicked', self.on_clicked_btn)
-    self.create_button('÷', 2, 4).connect('clicked', self.on_clicked_btn)
-    self.create_button('8', 0, 3).connect('clicked', self.on_clicked_btn)
-    self.create_button('9', 1, 3).connect('clicked', self.on_clicked_btn)
-    self.create_button('DEL', 2, 3).connect('clicked', self.on_clicked_btn)
-    self.create_button('(', 0, 2).connect('clicked', self.on_clicked_btn)
-    self.create_button(')', 1, 2).connect('clicked', self.on_clicked_btn)
-    self.create_button('AC', 2, 2).connect('clicked', self.on_clicked_btn)
-
+    
+    count = 0
+    for i in range(8, 1, -1):
+      for j in range(0, 3):
+        btn = self.create_button(self.buttons[count], j, i)
+        btn.connect('clicked', self.on_clicked_btn)
+        count += 1
 
     self.add_grid(self.input_box, 0, 0, self.size_screen)
     self.add_grid(self.output_box, 0, 1, self.size_screen)
