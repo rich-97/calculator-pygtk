@@ -1,0 +1,18 @@
+#output,
+#input {
+    background-color: #222c38;
+    color: #fff;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+GtkButton {
+    border: 1.5px solid #ccc;
+    padding: 5px 25px;
+    font-size: 17px;
+}
+
+#Calculator {
+    background-color: #ccc;
+}
