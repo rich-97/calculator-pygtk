@@ -18,8 +18,8 @@ class Calculator (Window):
     self.output_box.set_xalign(1)
     
     count = 0
-    for i in range(8, 1, -1):
-      for j in range(0, 3):
+    for i in xrange(8, 1, -1):
+      for j in xrange(0, 3):
         btn = self.create_button(self.buttons[count], j, i)
         btn.connect('clicked', self.on_clicked_btn)
         count += 1
@@ -34,13 +34,14 @@ class Calculator (Window):
     self.input_box.set_text(input_text)
 
   def on_clicked_btn (self, button):
+    operators = '+ - / * ( )'.split()
     text_btn = button.get_label()
 
     if text_btn == 'DEL':
       input_text = self.input_box.get_text()
       new_text = ''
 
-      for i in range(0, len(input_text) - 1):
+      for i in xrange(0, len(input_text) - 1):
         new_text += input_text[i]
       
       self.input_box.set_text(new_text)
@@ -50,17 +51,16 @@ class Calculator (Window):
       self.output_box.set_text('0.')
 
     elif text_btn == '=':
-      operators = ['+', '-', '/', '*', '(', ')']
       input_text = self.input_box.get_text()
       input_text = input_text.replace('÷', '/')
       input_text = input_text.replace('x', '*')
 
       if '%' in input_text:
-        for i in range(0, input_text.count('%')):
+        for i in xrange(0, input_text.count('%')):
           index = input_text.index('%')
           number = ''
 
-          for i in range(index, 0, -1):
+          for i in xrange(index, 0, -1):
             if input_text[i - 1] in operators:
               break
             else:
